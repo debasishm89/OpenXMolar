@@ -8,9 +8,9 @@ OpenXMolar is a [Microsoft Open XML](https://en.wikipedia.org/wiki/Office_Open_X
 
 ii) Motivation Behind Writing this Fuzzer
 =========================================
-MS OpenXML office files are widely used and the attack surface is huge, due to complexity of the softwares that supports OpenXML format. Office Open XML files are zipped, XML-based file format. I could not find any easy to use OpenXML auditing tools/framework available on the internet which provides software security auditors a platform using which auditors can write their own test cases and tweak internal structure of Open XML files and run fuzz test (Example : Microsoft Office).
+MS OpenXML office files are widely used and the attack surface is huge, due to complexity of the softwares that supports OpenXML format. Office Open XML files are zipped, XML-based file format. I could not find any easy to use OpenXML auditing tools/framework available on the internet which provides software security auditors a easy to use platform using which auditors can write their own test cases and tweak internal structure of Open XML files and run fuzz test (Example : Microsoft Office).
 
-Hence this fuzzer was developed, using which software security auditors can focus, only on writing test cases for OpenXML internal XML ( and other ) file mutation and the framework takes care of rest of the things like unpacking, packing of OpenXML files, Error handling, etc.
+Hence OpenXMolar was developed, using which software security auditors can focus, only on writing test cases for tweaking OpenXML internal (XML and other ) files and the framework takes care of rest of the things like unpacking, packing of OpenXML files, Error handling, etc.
 
 iii) Dependencies
 ==================
@@ -84,8 +84,8 @@ The motive behind OpenXMolar was to provide security auditors an easy & flexible
 
 | FileHandler | Description |
 | ------ | ------ |
-| xmlHandler.py | Responsible for mutating XML files. |
-| binaryHandler.py  | Responsible for mutating binary format files. |
+| xmlHandler.py | Responsible for mutation of XML files. |
+| binaryHandler.py  | Responsible for mutation of binary format files. |
 | SampleHandler.py | Blank file format handler template |
 
 

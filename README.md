@@ -1,5 +1,7 @@
 i) OpenXMolar
 =======================
+
+![alt text](https://github.com/debasishm89/OpenXMolar/blob/master/screens/logo.PNG "OpenXMolar")
 OpenXMolar is a [Microsoft Open XML](https://en.wikipedia.org/wiki/Office_Open_XML) file format fuzzing framework, written in Python. 
 
 

@@ -2,6 +2,7 @@ i) OpenXMolar
 =======================
 
 ![alt text](https://github.com/debasishm89/OpenXMolar/blob/master/screens/logo.PNG "OpenXMolar")
+
 OpenXMolar is a [Microsoft Open XML](https://en.wikipedia.org/wiki/Office_Open_XML) file format fuzzing framework, written in Python. 
 
 
@@ -65,7 +66,7 @@ OXDumper.py is useful when you are targeting any specific set of files present i
 
 crashSummary.py summarizes crashes found during fuzzing process in tabular format. The output of crashSummary.py should look like this:
 
-[screen]
+![alt text](https://github.com/debasishm89/OpenXMolar/blob/master/screens/CrashSummary.png "CrashSummary")
 
 
 
@@ -118,7 +119,7 @@ vii)Adding More POPUP / Errors Windows Handler
 
 The default PopUpKiller.py file provided with Open X-Molar, is having few most occurred pop up / error windows handler for MS Word, MS Excel & Power Point. Using AutoIT Window Info tool (https://www.autoitscript.com/site/autoit/downloads/) you can add more POPUP / Errors Windows Handlers into 'PopUpKiller.py'. One example is given below.
 
-[PIC should be added]
+![alt text](https://github.com/debasishm89/OpenXMolar/blob/master/screens/popuphandler.PNG "OpenXMolar")
 
 So to be able to Handle the error pop up window shown in screen shot, following lines need to be added in : PopUpKiller.py
 

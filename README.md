@@ -1,4 +1,4 @@
-i) OpenXMolar
+i) OpenXMolar v 1.0
 =======================
 
 ![alt text](https://github.com/debasishm89/OpenXMolar/blob/master/screens/logo.PNG "OpenXMolar")
@@ -10,7 +10,7 @@ ii) Motivation Behind Writing this Fuzzer
 =========================================
 MS OpenXML office files are widely used and the attack surface is huge, due to complexity of the softwares that supports OpenXML format. Office Open XML files are zipped, XML-based file format. I could not find any easy to use OpenXML auditing tools/framework available on the internet which provides software security auditors a platform using which auditors can write their own test cases and tweak internal structure of Open XML files and run fuzz test (Example : Microsoft Office).
 
-Hence this fuzzer was developed, using which software security auditors can focus, only on writing test cases for OpenXML internal XML ( and other ) file mutation and the framework takes cares of rest of the things like unpacking, packing of OpenXML files, Error handling, etc.
+Hence this fuzzer was developed, using which software security auditors can focus, only on writing test cases for OpenXML internal XML ( and other ) file mutation and the framework takes care of rest of the things like unpacking, packing of OpenXML files, Error handling, etc.
 
 iii) Dependencies
 ==================

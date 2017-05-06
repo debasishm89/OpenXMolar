@@ -6,7 +6,7 @@ i) OpenXMolar v 1.0
 OpenXMolar is a [Microsoft Open XML](https://en.wikipedia.org/wiki/Office_Open_XML) file format fuzzing framework, written in Python. 
 
 
-ii) Motivation Behind Writing this Fuzzer
+ii) Motivation Behind OpenXMolar
 =========================================
 MS OpenXML office files are widely used and the attack surface is huge, due to complexity of the softwares that supports OpenXML format. Office Open XML files are zipped, XML-based file format. I could not find any easy to use OpenXML auditing tools/framework available on the internet which provides software security auditors a easy to use platform using which auditors can write their own test cases and tweak internal structure of Open XML files and run fuzz test (Example : Microsoft Office).
 

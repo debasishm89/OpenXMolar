@@ -194,7 +194,7 @@ And you're good to go.
 xi) TODO
 =======
 1. Improve Fuzzing Speed
-2. ??? mailto : debasishm89_at_gmail_dot_com
+2. New Feature / Bugs -> https://github.com/debasishm89/OpenXMolar/issues
 
 xii) Licence
 ===========

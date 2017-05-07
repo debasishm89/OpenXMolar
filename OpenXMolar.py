@@ -168,7 +168,7 @@ class Fuzzer:
 			exts = []
 			files = os.listdir(config_obj.packed_open_xml_office_files)
 			if len(files) == 0:
-				print '[+]',datetime.now().strftime("%Y:%m:%d::%H:%M:%S"),'[Error] Base file directory is empty. Please provide one or more base files',config_obj.packed_open_xml_office_files
+				print '[+]',datetime.now().strftime("%Y:%m:%d::%H:%M:%S"),'[Error] Base file directory is empty. Please provide one or more base files in directory ',config_obj.packed_open_xml_office_files
 				exit()
 			else:
 				#5. multiple extension check, if the target folder has multiple extension.
@@ -193,7 +193,7 @@ class Fuzzer:
 			exts = []
 			files = os.listdir(config_obj.binary_office_files)
 			if len(files) == 0:
-				print '[+]',datetime.now().strftime("%Y:%m:%d::%H:%M:%S"),'[Error] Base file directory is empty. Please provide one or more base files',config_obj.packed_open_xml_office_files
+				print '[+]',datetime.now().strftime("%Y:%m:%d::%H:%M:%S"),'[Error] Base file directory is empty. Please provide one or more base files in directory',config_obj.binary_office_files
 				exit()
 			else:
 				#5. multiple extension check, if the target folder has multiple extension.
@@ -207,7 +207,7 @@ class Fuzzer:
 					# Check if all handlers are provided in config file
 					for ext in set(exts):
 						if ext not in config_obj.APP_LIST.keys():
-							print '[+]',datetime.now().strftime("%Y:%m:%d::%H:%M:%S"),'No file handler found for extension : ',ext,'. Please add file handler in config file APP_LIST'
+							print '[+]',datetime.now().strftime("%Y:%m:%d::%H:%M:%S"),'Base file directory is : ',config_obj.binary_office_files,', No file handler found for extension : ',ext,'. Please add file handler in config file APP_LIST'
 							exit()
 						# Since its not an OpenXML file, we need to check if FileFormat Mutation handler is present or not.
 						if ext not in config_obj.FILE_FORMAT_HANDLERS.keys():
@@ -236,7 +236,7 @@ class Fuzzer:
 			if (len(ALL_DOCS_IN_MEMORY)) == 0:
 				print '[+]', datetime.now().strftime("%Y:%m:%d::%H:%M:%S"),'No Open XML files provided as base file @',self.conf.open_xml_office_files
 				exit()
-			mut = Mutator(OpenXML=True,handlers = self.conf.FILE_FORMAT_HANDLERS,files_to_be_fuzzed = self.conf.FILES_TO_BE_FUZZED,no_of_files_to_be_fuzzed = self.conf.NUMBER_OF_FILES_TO_MUTATE)				# Passing file format handler and type
+			mut = Mutator(OpenXML=True,handlers = self.conf.FILE_FORMAT_HANDLERS,files_to_be_fuzzed = self.conf.FILES_TO_BE_FUZZED,no_of_files_to_be_fuzzed = self.conf.NUMBER_OF_FILES_TO_MUTATE, auto_id_file_type = self.conf.AUTO_IDENTIFY_INTERNAL_FILE_FORAMT,all_handlers=self.conf.ALL_MUTATION_SCRIPTS, all_inmem_docs = ALL_DOCS_IN_MEMORY)				# Passing file format handler and type
 			print '[+]', datetime.now().strftime("%Y:%m:%d::%H:%M:%S"),'Starting Fuzzing'
 			while 1:
 				self.CurrentTestCaseName = choice(ALL_DOCS_IN_MEMORY.keys())					# randomly select one office file loaded in memory.				
@@ -269,7 +269,7 @@ class Fuzzer:
 			if (len(ALL_DOCS_IN_MEMORY)) == 0:
 				print '[+]',datetime.now().strftime("%Y:%m:%d::%H:%M:%S"),' No Binary files provided as base file @',self.conf.binary_office_files
 				exit()
-			mut = Mutator(OpenXML=False,handlers = self.conf.FILE_FORMAT_HANDLERS,files_to_be_fuzzed = self.conf.FILES_TO_BE_FUZZED,no_of_files_to_be_fuzzed=self.conf.NUMBER_OF_FILES_TO_MUTATE)
+			mut = Mutator(OpenXML=False,handlers = self.conf.FILE_FORMAT_HANDLERS,files_to_be_fuzzed = self.conf.FILES_TO_BE_FUZZED,no_of_files_to_be_fuzzed=self.conf.NUMBER_OF_FILES_TO_MUTATE,auto_id_file_type = self.conf.AUTO_IDENTIFY_INTERNAL_FILE_FORAMT,all_handlers=self.conf.ALL_MUTATION_SCRIPTS,all_inmem_docs = ALL_DOCS_IN_MEMORY)
 			print '[+]', datetime.now().strftime("%Y:%m:%d::%H:%M:%S") ,'Starting Fuzzing'
 			while 1:
 				#print 'loop start '

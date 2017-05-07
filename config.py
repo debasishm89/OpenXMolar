@@ -38,8 +38,7 @@ fuzztempfolder  = 'FuzzTemp'
 # If OpenXMLFormat is True, Base files will be taken from folder 'open_xml_office_files'
 OpenXMLFormat = True
 
-
-
+####################################################################################################################
 # This dictionary is holding the mapping between office application and extension. 
 # While fuzzing, an application (exe) will be chosen from this dictionary based on extension of file(s) provided in folder 'open_xml_office_files' or 'binary_office_files'
 # Add your own extension and exe. :). Note: Make sure extension does not repeat. 
@@ -47,43 +46,63 @@ APP_LIST = {
 			'xps':r'C:\Windows\system32\xpsrchvw.exe',
 			'oxps':r'C:\Windows\system32\xpsrchvw.exe'
 			}
-
-# An Open XML file may contain various files like XML files, Binary files etc. 
-# Following dict. holds a mapping between different file extension and a file which can parse the format and mutate its content (handler).
-# For example when the fuzzer will find and *.xml file inside an OpenXML document it will use '\FileFormatHandlers\xmlHandler.py' file to mutate the file.
-# While writing your own custom file format handler , please refer sample : \FileFormatHandlers\SampleHandler.py
-# File format handler(s) should always be kept inside '\FileFormatHandlers\' folder.
-FILE_FORMAT_HANDLERS = {'xml':'SampleHandler.py','rels':'SampleHandler.py'}
-
+			
 # A Python list of command line arguments to be used while running target application. To be left blank when none required. Example : COMMAND_LINE_ARGUMENT = ['arg1','arg2','arg3','arg4']
 COMMAND_LINE_ARGUMENT = []
+####################################################################################################################
+
+
+########################################################################################
+# An Open XML file package may contain various files like XML files, Binary files etc.  
+# When AUTO_IDENTIFY_INTERNAL_FILE_FORAMT is set to 'True', OpenXMolar will try to indentify types of files present inside provided base openxml packages and based on that decide, which mutation script to to use during fuzzing.			
+AUTO_IDENTIFY_INTERNAL_FILE_FORAMT = True
+
+
+# Mutation script list. Once AUTO_IDENTIFY_INTERNAL_FILE_FORAMT is set to True, available mutation scripts and associated extensions has to be defined under ALL_MUTATION_SCRIPTS in dict format.
+
+ALL_MUTATION_SCRIPTS = {'xml':'SampleHandler.py','bin':'binaryHandler.py'}
+#########################################################################################
+
+
+			
+# Note: This is only required when AUTO_IDENTIFY_INTERNAL_FILE_FORAMT is set to False.
+# Following dict. holds a mapping between different file extension and a file which can parse the format and mutate its content (handler).
+# For example when the fuzzer will find a *.xml file inside an OpenXML document it will use '\FileFormatHandlers\SampleHandler.py' file to mutate the xml file.
+# While writing your own custom file format handler , please refer sample : \FileFormatHandlers\SampleHandler.py and README.md doc.
+# File format handler(s) should always be kept inside '\FileFormatHandlers\' folder.
+
+FILE_FORMAT_HANDLERS = {'xml':'SampleHandler.py','rels':'SampleHandler.py'}
+
+
 						
-# Delay Between test case iteration; Delay between the fuzzing infinite while loop
+# Delay Between test case iteration;
 FUZZ_LOOP_DELAY = 0.5 	# In Seconds
 
 
 # Run the application for n seconds, and monitor it.
-# Tip: Office usually considered as heavy application. If you are not running this fuzzer on a very fast system, increase APP_RUN_TIME accordingly.
-APP_RUN_TIME = 1 	# In seconds
+# Tip: MSOffice usually considered as heavy application. If you are not running this fuzzer on a very fast system, increase APP_RUN_TIME accordingly.
+APP_RUN_TIME = 1.5 	# In seconds
 
 
 # Debugger to use for process monitoring.
-# Right now MSOXFuzz supports two debugger 'pydbg' and 'winappdbg'. Installing pydbg could be painful sometimes, so use 'winappdbg' proudly :) It works pretty good.
+# Right now MSOXFuzz supports two debuggers, 'winappdbg' and 'pydbg'. Installing pydbg could be painful sometimes, so use 'winappdbg' proudly :) It works pretty good.
 DEBUGGER = 'winappdbg'   
 
-# Number of files to be mutated inside any OpenXML document. For better results keep it less, For example 2,3 or max 5.
-
+# Number of files to be mutated inside any base OpenXML document. For better results keep it less, For example 2,3 or max 5.
 NUMBER_OF_FILES_TO_MUTATE = 2
 
 
-# In case if you want to target/fuzz one or more specific file inside any OpenXML document, you need to provide the file name(s) in this list FILES_TO_BE_FUZZED.
+# In case if you want to target/fuzz one or more specific file(s) inside an OpenXML document, you need to provide the file name(s) in this list 'FILES_TO_BE_FUZZED' depending on base files present at packed_open_xml_office_files
 # For example in following OpenXML structure, if you want to target 'MXDC_Empty_PT.xml' & 'FixedDocument.fdoc' file.
-# The list would look like FILES_TO_BE_FUZZED = ['MXDC_Empty_PT.xml','FixedDocument.fdoc']
+# The list would look something like this : FILES_TO_BE_FUZZED = ['MXDC_Empty_PT.xml','FixedDocument.fdoc']
 # In case if you want to fuzz all files, keep it empty FILE_TO_BE_FUZZED = []
-# Note: This is only required when OpenXMLFormat = True is set in config. file.
-# Warning : When FILES_TO_BE_FUZZED is not empty , you must provide only one OpenXML file as base file. When provided multiple base file this list should be empty.
 
-################ You can simply copy paste follwing python file list to config file #####################
+# Note: This is only required when OpenXMLFormat = True , config. file.
+# You can use OXDumper.py to generate this list.
+# Warning : When FILES_TO_BE_FUZZED is not empty , you must provide only one OpenXML file as base file. When provided multiple base file this list should be empty.
+# Please remember to change this list when you change the Basefile in OpenXML base file folder. packed_open_xml_office_files to avoid nasty errors.
+
+################ Generated using OXDumper.py, You can simply copy paste follwing python file list to config file #####################
 FILES_TO_BE_FUZZED = []
 ################ File list ends #####################
 '''

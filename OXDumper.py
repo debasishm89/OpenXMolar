@@ -48,7 +48,7 @@ if __name__ == "__main__":
 		print '[+] Accepts only one command line argument(comma separated file extensions). Usage : OXDumper.py xml,rels,ext1,ext2'
 		od = OXDumper()
 		files = od.getFiles()
-		print '################ You can simply copy paste follwing python file list to config file #####################'
+		print '################ Generated using OXDumper.py, You can simply copy paste follwing python file list to config file #####################'
 		list_buff = 'FILES_TO_BE_FUZZED = ['
 		for file in files:
 			list_buff +=  'r\'' + file  +'\',\n'
@@ -65,7 +65,7 @@ if __name__ == "__main__":
 		if len(files) == 0:
 			print '[+] No files found inside Base OpenXML document with provided exntension(s) :( ',exts
 			exit()
-		print '################ You can simply copy paste follwing python file list to config file #####################'
+		print '################ Generated using OXDumper.py, You can simply copy paste follwing python file list to config file #####################'
 		list_buff = 'FILES_TO_BE_FUZZED = ['
 		for file in files:
 			if file.split('.')[-1] in exts:

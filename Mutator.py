@@ -23,6 +23,7 @@ import imp
 from datetime import datetime
 from math import ceil
 from copy import copy
+from xml.etree import ElementTree as ET
 
 
 
@@ -32,24 +33,48 @@ class Mutator:
 	This class is responsible for data mutation (depending on xml / binary format it will choose appropriate file format mutation hanlder) . Its uses provided file handlers to mutate data.
 	
 	'''
-	def __init__(self,OpenXML,handlers,files_to_be_fuzzed,no_of_files_to_be_fuzzed):
+	def __init__(self,OpenXML,handlers,files_to_be_fuzzed,no_of_files_to_be_fuzzed,auto_id_file_type,all_handlers,all_inmem_docs):
 		self.oxml = OpenXML
 		self.HANDLERS = handlers
 		self.handler_obj_dict = {}
+		self.AUTO_ID_FILE_TYPE = auto_id_file_type
+		self.ALL_HANDLERS = all_handlers
+		self.ALL_INMEM_DOCS = all_inmem_docs
 		self.LoadFormatHandlers()
 		self.FILES_TO_BE_FUZZED = files_to_be_fuzzed
 		self.NUMBER_OF_FILES_TO_MUTATE = no_of_files_to_be_fuzzed
-		
+
 	def LoadFormatHandlers(self):
-		for handler in self.HANDLERS:
-			try:
-				print '[+]',datetime.now().strftime("%Y:%m:%d::%H:%M:%S"),'Loading File Format Handler for extension : ',handler,'=>',self.HANDLERS[handler]
-				foo = imp.load_source('Handler', 'FileFormatHandlers//'+self.HANDLERS[handler])
-				a = foo.Handler()
-				self.handler_obj_dict[handler] = a
-			except:
-				print '[+]',datetime.now().strftime("%Y:%m:%d::%H:%M:%S"),'There is an error in this Fileformat handler or it was not written correctly.','FileFormatHandlers//'+self.HANDLERS[handler], 'Please check FileFormatHandlers\\SampleHandler.py'
-		print '[+]',datetime.now().strftime("%Y:%m:%d::%H:%M:%S"),'Loading File Format Handler Done !!'
+		if self.AUTO_ID_FILE_TYPE:
+			print '[+]',datetime.now().strftime("%Y:%m:%d::%H:%M:%S"),'Trying to indentify base OpenXML internal file types and choosing mutation handler accordingly : '
+			for i in self.ALL_INMEM_DOCS:
+				files = self.ALL_INMEM_DOCS[i]
+				for inner_f in files:
+					ext = inner_f.split('.')[-1]
+					try:
+						x = ET.fromstring(files[inner_f])
+						result_type = 'xml'
+						print '[+]',datetime.now().strftime("%Y:%m:%d::%H:%M:%S"),'For extension : ',ext,', selecting mutation handler =>',self.ALL_HANDLERS[result_type]
+						foo = imp.load_source('Handler', 'FileFormatHandlers//'+self.ALL_HANDLERS[result_type])
+						a = foo.Handler()
+						self.handler_obj_dict[ext] = a
+					except:
+						# Its not an xml file try to find other hanlder
+						result_type = 'bin'
+						print '[+]',datetime.now().strftime("%Y:%m:%d::%H:%M:%S"),'For extension : ',ext,', selecting mutation handler =>',self.ALL_HANDLERS[result_type]
+						foo = imp.load_source('Handler', 'FileFormatHandlers//'+self.ALL_HANDLERS[result_type])
+						a = foo.Handler()
+						self.handler_obj_dict[ext] = a
+		else:
+			for handler in self.HANDLERS:
+				try:
+					print '[+]',datetime.now().strftime("%Y:%m:%d::%H:%M:%S"),'Loading File Format Handler for extension : ',handler,'=>',self.HANDLERS[handler]
+					foo = imp.load_source('Handler', 'FileFormatHandlers//'+self.HANDLERS[handler])
+					a = foo.Handler()
+					self.handler_obj_dict[handler] = a
+				except:
+					print '[+]',datetime.now().strftime("%Y:%m:%d::%H:%M:%S"),'There is an error in this Fileformat handler or it was not written correctly.','FileFormatHandlers//'+self.HANDLERS[handler], 'Please check FileFormatHandlers\\SampleHandler.py'
+			print '[+]',datetime.now().strftime("%Y:%m:%d::%H:%M:%S"),'Loading File Format Handler Done !!'
 	def Mutate(self,office_doc_dict,file_name):
 		'''
 		

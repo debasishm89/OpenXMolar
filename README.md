@@ -191,12 +191,21 @@ Due to the flexible structure of the fuzzer, this Fuzzer can also be used to fuz
 
 And you're good to go.
 
-xi) TODO
+xi) Few More Points about OpenXMolar:
+======================================
+1. Fuzzing Efficiency:
+To maximize fuzzing efficiency OpenXMolar doesn't read the provided base files again and from disk. While starting up, it loads all base files in memory and convert them into easy to manage python data structures and mutate them straight from memory.
+
+2. Auto identification of internal files of OpenXML package :
+An Open XML file package may contain various files like XML files, Binary files etc. OpenXMolar has capability to identify internal file types and based that chooses mutation script and mutate them. Please refer to the default config.py file (Param : AUTO_IDENTIFY_INTERNAL_FILE_FORAMT) for details.
+
+
+xii) TODO
 =======
 1. Improve Fuzzing Speed
 2. New Feature / Bugs -> https://github.com/debasishm89/OpenXMolar/issues
 
-xii) Licence
+xiii) Licence
 ===========
 
 This software is licenced under New BSD License although the following libraries are included with Open X-Molar and are licensed separately.
@@ -211,7 +220,7 @@ This software is licenced under New BSD License although the following libraries
 | Au3Info.exe | https://www.autoitscript.com/autoit3/docs/intro/au3spy.htm |
 
 
-xiii )Author
+xiv )Author
 =============
 
 Debasish Mandal ( https://twitter.com/debasishm89 )

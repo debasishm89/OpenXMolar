@@ -174,7 +174,7 @@ ix) Open X-Molar in Action
 
 Here is a very short video on running fuzztest on MS Powerpoint : 
 
-[![IMAGE ALT TEXT HERE](http://edudemic.com/wp-content/uploads/2013/01/youtube.png)](https://www.youtube.com/watch?v=b7n1tuFDl5A)
+[![IMAGE ALT TEXT HERE](https://github.com/debasishm89/OpenXMolar/blob/master/screens/video_thumb.PNG)](https://www.youtube.com/watch?v=b7n1tuFDl5A)
 
 x) Fuzzing Non-OpenXML Applications :
 ====================================

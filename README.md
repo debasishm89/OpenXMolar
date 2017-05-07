@@ -72,7 +72,7 @@ crashSummary.py summarizes crashes found during fuzzing process in tabular forma
 
 v) Configuration File Walk through
 =================================
-The default configuration file 'config.py' is very well commented and explains all of its parameters really well. Please review the default config.py file thoroughly before running the fuzzer to avoid unwanted errors.
+The default configuration file '[config.py](https://github.com/debasishm89/OpenXMolar/blob/master/config.py)' is very well commented and explains all of its parameters really well. Please review the default config.py file thoroughly before running the fuzzer to avoid unwanted errors.
 
 
 vi) Writing your Open XML internal File Mutation Scripts:

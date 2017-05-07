@@ -172,7 +172,7 @@ C:\Users\John\Desktop\OpenXMolar>python OpenXMolar.py config.py
 ix) Open X-Molar in Action
 ==========================
 
-Here is a very short video on running fuzztest on MS Powerpoint : 
+Here is a very short video on running fuzztest on MS Office Word: 
 
 [![IMAGE ALT TEXT HERE](https://github.com/debasishm89/OpenXMolar/blob/master/screens/video_thumb.PNG)](https://www.youtube.com/watch?v=b7n1tuFDl5A)
 

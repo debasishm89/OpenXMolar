@@ -45,7 +45,7 @@ class Mutator:
 		self.NUMBER_OF_FILES_TO_MUTATE = no_of_files_to_be_fuzzed
 
 	def LoadFormatHandlers(self):
-		if self.AUTO_ID_FILE_TYPE:
+		if self.AUTO_ID_FILE_TYPE and self.oxml:
 			print '[+]',datetime.now().strftime("%Y:%m:%d::%H:%M:%S"),'Trying to indentify base OpenXML internal file types and choosing mutation handler accordingly : '
 			for i in self.ALL_INMEM_DOCS:
 				files = self.ALL_INMEM_DOCS[i]

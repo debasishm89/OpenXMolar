@@ -74,6 +74,7 @@ class Mutator:
 					self.handler_obj_dict[handler] = a
 				except:
 					print '[+]',datetime.now().strftime("%Y:%m:%d::%H:%M:%S"),'There is an error in this Fileformat handler or it was not written correctly.','FileFormatHandlers//'+self.HANDLERS[handler], 'Please check FileFormatHandlers\\SampleHandler.py'
+					exit()
 			print '[+]',datetime.now().strftime("%Y:%m:%d::%H:%M:%S"),'Loading File Format Handler Done !!'
 	def Mutate(self,office_doc_dict,file_name):
 		'''

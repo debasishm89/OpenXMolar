@@ -67,7 +67,7 @@ if __name__ == "__main__":
 			exit()
 		print '################ Generated using OXDumper.py, You can simply copy paste follwing python file list to config file #####################'
 		list_buff = 'FILES_TO_BE_FUZZED = ['
-		for file in files:
+		for file in sorted(files):
 			if file.split('.')[-1] in exts:
 				list_buff +=  'r\'' + file  +'\',\n'
 		list_buff = list_buff[:-2]+']'

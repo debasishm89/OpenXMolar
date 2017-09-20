@@ -225,6 +225,6 @@ xiv )Author
 
 Debasish Mandal ( https://twitter.com/debasishm89 )
 
-xv ) Bugs
-==========
+xv ) CVE(s)
+============
 https://portal.msrc.microsoft.com/en-us/security-guidance/advisory/CVE-2017-8630

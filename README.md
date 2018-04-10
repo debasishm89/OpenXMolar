@@ -205,7 +205,7 @@ xii) TODO
 1. Improve Fuzzing Speed
 2. New Feature / Bugs -> https://github.com/debasishm89/OpenXMolar/issues
 
-xiii) Licence
+xiii) License
 ===========
 
 This software is licenced under New BSD License although the following libraries are included with Open X-Molar and are licensed separately.
